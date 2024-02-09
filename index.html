@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPPIE </title>
+    <link rel="stylesheet" href="./shoppie.css">
+</head>
+<body id="body" >
+
+  
+  <!-- delete modal -->
+  <div class="delete-modal  hide-modal" >
+    <div class="inputBg" id="dlt">
+      <p>Are you sure you want to delete this?</p>
+      <div class="terminal-actions">
+        <span  class="action"id="yls" >Yes</span>
+        <span class="action" id="non">No</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- delete all modal -->
+  <div class="delete-all-modal  hide-modal" >
+    <div  class="inputBg" id="dltAllModalDiv">
+      <p>Are you sure you want to delete all this?</p>
+      <div class="terminal-actions">
+        <span  class="action"id="dltAllModalDiv-yls" >Yes</span>
+        <span class="action" id="dltAllModalDiv-non">No</span>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- theme modal -->
+  <div class="theme-modal hide-modal"> 
+    
+    <ion-icon id="cancle" name="close" class="theme-wrapper"></ion-icon>
+    
+    <div class="theme-currency  theme-wrapper inputBg">
+      <div id="currency">
+        <div> <p class="currency-theme-font">Currency:</p> </div> 
+        <input type="text" value="$" >
+      </div>
+      <div id="theme">
+        <div> <p class="currency-theme-font  theme">Theme:</p> </div>
+        <ion-icon name="moon" id="theme-icon"></ion-icon>
+      </div>
+      
+      <button class="list-action-btn" id="theme-dlt">Delete all <ion-icon name="trash"></ion-icon></button>
+      <button class="list-action-btn" id="theme-purchase">Purchase all <ion-icon name="checkmark-circle-outline"></ion-icon></button>
+    </div>
+    
+  </div>
+
+
+  
+  <section id="top-div">
+    <header>
+      
+      <div class="h1-div">
+        <h1 id="header-h1">Shoppie</h1>
+        <div id="div-wrapper">
+          <div class="header-h1-div"></div>
+          <div id="header-h1-div2"></div>
+        </div>
+      </div>
+      <ion-icon id="header-icon" name="ellipsis-horizontal" ></ion-icon>
+      
+    </header>
+
+
+    <!-- transition modal -->
+    <div class="trans-wrapper hide-modal" >
+      <div class="notify"></div>
+    </div>
+
+
+
+    <section id="section-header">
+      <form id="input-div">
+        <label class="label">
+         <p> Name of Item:</p>
+         <div class="divider"></div>
+          <input type="text" value="" class="input inputBg" required>
+        </label>
+
+        <label class="label">
+          <p>Quantity:</p>
+         <div class="divider"></div>
+          <input type="number" value="1" class="input inputBg" min="1">
+        </label>
+
+        <label class="label">
+          <p>Price:</p>
+         <div class="divider"></div>
+          <input type="number" value="0" class="input inputBg">
+        </label>
+
+        <button id="addItemBtn" >Add Item</button>
+      </form>
+
+      <div class="total-purchased">
+
+        <div class="total inputBg">
+          <p class="total-p">Total:</p>
+          <p id="amount" style="color: red;">$0.00</p>
+        </div>
+
+        <div class="total inputBg">
+          <p id="total-pur">Purchased:</p>
+          <p style="color: red;">$0.00</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="section-action">
+      <div id="list-action">
+        <button class="list-action-btn" id="dltAll"><p>Delete all</p> <ion-icon name="trash"></ion-icon></button>
+        <button class="list-action-btn" id="selcAll"><p>Select all</p> <ion-icon name="checkmark-circle-outline"></ion-icon></button>
+        <button class="seperateBtn list-action-btn" id="dltSelc"><ion-icon name="trash"></ion-icon><p>Delete selected</p></button>
+        <button class="seperateBtn list-action-btn" id="purSelc"><ion-icon name="push-outline"></ion-icon><p>Purchased selected</p></button>
+        <button class="seperateBtn list-action-btn" id="unpurSelc"><ion-icon name="push-outline"></ion-icon><p>Unpurchased selected</p></button>
+      </div>
+    </section>
+
+
+    <section id="sort-section">
+      <select class="select" name="Select Order">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+       </select>
+    </section>
+
+    <section id="item-section">
+
+      <!-- <div class="item-div">
+        <input type="checkbox" id="checkbox">
+
+        <p id="item-p">Biscuit - $200 x 1
+        </p>
+
+        <div class="items-actions">
+          <button class="trash" class="itemBtn"><ion-icon name="trash"></ion-icon></button>
+          <button class="edit" class="itemBtn"><ion-icon name="push-outline"></ion-icon></button>
+        </div>
+      </div>
+
+      <div class="item-div">
+        <input type="checkbox" id="checkbox">
+
+        <p id="item-p">Biscuit - $200 x 1
+        </p>
+
+        <div class="items-actions">
+          <button class="trash" class="itemBtn"><ion-icon name="trash"></ion-icon></button>
+          <button class="edit" class="itemBtn"><ion-icon name="push-outline"></ion-icon></button>
+        </div>
+      </div>
+
+      <div class="item-div">
+        <input type="checkbox" id="checkbox">
+
+        <p id="item-p">Biscuit - $200 x 1
+        </p>
+
+        <div class="items-actions">
+          <button class="trash" class="itemBtn"><ion-icon name="trash"></ion-icon></button>
+          <button class="edit" class="itemBtn"><ion-icon name="push-outline"></ion-icon></button>
+        </div>
+      </div> -->
+
+      <!-- alert transition -->
+      
+      
+    </section>
+    <!-- <div class="added">Added!</div> -->
+  </section>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>  
+    <script src="./shoppie.js"></script>
+</body>
+</html>

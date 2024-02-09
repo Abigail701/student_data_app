@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+    <style>
+        *{
+          margin: 0%;
+          padding: 0%;
+        }
+  
+        header{
+          background-color: black;
+          height: 60px;
+          width: 100%;
+  
+        }
+  
+        nav{
+          display: flex;
+          justify-content: space-between;
+          padding-top: 1%;
+          width: 100%;
+          align-items: center;
+        }
+  
+        h1{
+          padding-left: 3%;
+          padding: 10px 12px 10px 12px; 
+          color: white;
+  
+        }
+  
+        .addStudentBtn{
+          padding-right: 3%;
+          color: white;
+          background-color: rgb(103, 201, 38);
+          padding: 10px 12px 10px 12px; 
+  
+        }
+
+        .addStudentBtn:hover{
+          border-radius: 30px;
+          background-color: red;
+        }
+  
+        section{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+  
+        .tableSection{
+          padding-top: 10%;
+        }
+  
+        
+  
+        
+        th, td{
+          border: 1px solid;
+          padding: 15px;
+        }
+        th{
+          background-color: gray;
+        }
+        td{
+          background-color: rgba(245, 245, 220, 0.448);
+        }
+  
+        .post{
+          width: 50%;
+          height: 70%;
+          border-radius: 10px;
+          border: 1px solid;
+          box-shadow: 1px 2px 2px 0.5;
+        }
+  
+        .hide{
+          display: none;
+        }
+  
+        .form{
+          background-color: aqua;
+          border-radius: 10px;
+          width: 300px;
+          height: auto;
+          box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+          transition: all 600ms ease;
+           
+          
+        }
+  
+        .wrapper{
+          padding-top: 5px;
+          display: flex;
+          flex-direction: column; 
+          width: 100%;
+          height: auto;
+          align-items: center;
+          justify-content: center;
+        }
+  
+        #btn{
+          padding: 5px;
+          color: rgb(241, 240, 240);
+          background-color: rgb(148, 33, 33);
+        }
+  
+        .hide-modal {
+          transition: all 600ms ease;
+          transform: translateX(-120%);
+          opacity: 0;
+        }
+        
+        .show-modal {
+          transition: all 700ms ease;
+          transform: translateX(0%);
+          opacity: 1;
+        }
+
+      
+    </style>    
+</head>
+<body>
+       
+  <header>
+    <nav>
+        <h1>Student Data</h1>
+       <button class="addStudentBtn show-modal">Add New Student</button> 
+    </nav>   
+  </header>
+
+
+
+<section>
+    <div class="tableSection">
+      <div class="search-section">
+         <input type="text" class="input"> 
+        <button class="search-table" type="button" >Search</button>
+       </div>
+
+       <select class="select" name="order">
+        <option value="asc-name">Name(Ascending)</option>
+        <option value="des-name">Name(descending)</option>
+        <option value="asc-total">Total(Ascending)</option>
+        <option value="des-total">Total(descending)</option>
+       </select>
+
+    <table class="thead">
+      <thead>
+        <tr>
+        
+          <th id="num">#</th>
+          <th id="name">Student Name</th>
+          <th id="roll">Roll Number</th>
+          <th id="Math">Maths</th>
+          <th id="Eng">English</th>
+          <th id="sci">Science</th>
+          <th id="Bio">Biology</th>
+          <th id="Total">Total</th>
+          <th id="parcent">Parcentage</th>
+          <th id="delete">Action</th>
+        
+        </tr>
+      </thead>
+
+      <tbody class="tbody">
+        <tr>
+<!--         
+          <td>#</td>
+          <td>Student Name</td>
+          <td>Roll Number</td>
+          <td>Maths</td>
+          <td>English</td>
+          <td>Science</td>
+          <td>Biology</td>
+          <td>Total</td>
+          <td>Parcentage</td>
+          <td>Action</td> -->
+        
+        </tr>
+      </tbody>
+
+     
+    </table>  
+    </div>
+    
+    
+    <!-- <div class="form-wrapper"> -->
+
+    <form class="form  hide-modal">
+      <div class="wrapper">
+        <h2>Add New Student</h2><br>
+        <input type="text" placeholder="name" required ><br>
+        
+        <input type="text" placeholder="roll" required><br>
+        
+        <input type="text" placeholder="Math" required><br>
+        
+        <input type="text" placeholder="English" required><br>
+        
+        <input type="text" placeholder="Science" required><br>
+        
+        <input type="text" placeholder="Biology" required><br>
+        
+        <button id="btn" class="submit">Submit</button>
+        <button type="button" class="close-icon">close</button>
+      </div>
+    </form>
+
+  <!-- edit form -->
+
+    <!-- <form class="form  hide-modal">
+      <div class="wrapper">
+        <h2>Add New Student</h2><br>
+        <input type="text" placeholder="name" required ><br>
+        
+        <input type="text" placeholder="roll" required><br>
+        
+        <input type="text" placeholder="Math" required><br>
+        
+        <input type="text" placeholder="English" required><br>
+        
+        <input type="text" placeholder="Science" required><br>
+        
+        <input type="text" placeholder="Biology" required><br>
+        
+        <button id="btn" class="submit">Submit</button>
+        <button type="button" class="close-icon">close</button>
+      </div>
+    </form> -->
+    <!-- </div> -->
+    
+  </section>
+
+
+
+
+
+
+</div>
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="./student.js"></script>
+
+</body>
+</html>
