@@ -57,15 +57,12 @@ let fieldLightMode = (field) => {
 }
 toggleTheme.addEventListener("click", () => {
     body.classList.toggle("lightMode");
-    // totalP.classList.toggle("totalLightMode");
-    // totalPur.classList.toggle("totalLightMode");
-    // currencyFont.classList.toggle("totalLightMode");
-    // theme.classList.toggle("totalLightMode");
-    // dltDiv.classList.toggle("totalLightMode");
     inputBg.forEach(field => {
         fieldLightMode(field)
     });
-   
+
+localStorage.setItem("itemDetails", JSON.stringify(itemDetails))
+    
 })
 
 console.log(inputBg);
@@ -74,6 +71,7 @@ console.log(inputBg);
 
 let isItemAvailable = localStorage.getItem("itemDetails");
 let itemDetails = isItemAvailable ? JSON.parse(isItemAvailable) : [];
+
 
 
 
@@ -111,6 +109,7 @@ inputForm.addEventListener("submit", (e) => {
 });
 
 
+
 // total price
 const totalPrice = () => {
     let totals = itemDetails
@@ -145,25 +144,26 @@ const generateItem = (data) => {
                 itemPrice,
                 itemQuantity,
                 id,
+                isPurchased
             } = item;
     
                 return `
               <div class="item-div">  
-                <input type="checkbox" class="checkbox activeCheckBox" checked >
+                <input type="checkbox" class="checkbox activeCheckBox" onchange="togglePurchaseItem('${id}')" ${isPurchased ? "checked" : ""}>
     
        
        
                 
-                <p class="item-p">${itemName} - ${itemPrice} x ${itemQuantity}
+                <p id="${id}" class="item-p ${isPurchased ? "selectCheckBox" : ""}">${itemName} - ${itemPrice} x ${itemQuantity}
                 </p>
         
                 <div class="items-actions">
                   <button class="trash item-Btn" onclick="deleteItem('${id}')" ><ion-icon name="trash"></ion-icon></button>
-                  <button class="edit item-Btn"><ion-icon name="push-outline"></ion-icon></button>
+                  <button onclick="editItem('${id}');" class="edit item-Btn"><ion-icon name="push-outline"></ion-icon></button>
                 </div>
               </div>  
                 `
-        }).join("");
+        }).reverse().join("");
         totalPrice();
     };
      generateItem(itemDetails);
@@ -172,24 +172,8 @@ const generateItem = (data) => {
      
 
 
-
-
-
-
-
-
-
-
-
-
 // delete item
-window.addEventListener("DOMContentLoaded", () => {
-let trashIcon = document.querySelector(".trash");
-    trashIcon.addEventListener("click", () => {
 
-    })
-  
-})
 
 let deleteItem = (id) => {
     dltModal.classList.remove("hide-modal");
@@ -207,7 +191,7 @@ let deleteItem = (id) => {
             itemDetails =  itemDetails.filter((item) => item.id != isItemFound.id )
         
             generateItem(itemDetails);
-
+            closeNotification()
             localStorage.setItem("itemDetails", JSON.stringify(itemDetails));
 
         dltModal.classList.add("hide-modal");
@@ -216,33 +200,57 @@ let deleteItem = (id) => {
 
 }
 
+let updateItemBtn =  document.getElementById("updateItemBtn");
+let addItemBtn = document.getElementById("addItemBtn");
+
 // edit item 
 
-window.addEventListener("DOMContentLoaded", () => {
-    
-    
-})
-let editIcon = document.querySelector(".edit");
-// let isItemIndexFound = null;
+let editedItemIndex;
+
 let editItem = (id) => {
-    let isItemFound = itemDetails.find((item) => item.id == id);
-    //  isItemIndexFound = itemDetails.findIdex((item) => item.id == id);
-    // console.log(isItemIndexFound);
+    let itemName = document.getElementById("itemName");
+    let itemPrice = document.getElementById("itemPrice");
+    let itemQuantity = document.getElementById("itemQuantity");
+    selectedItemId = id
+    let isItemFound = itemDetails.find((item) => selectedItemId == item.id);
+    editedItemIndex = itemDetails.findIndex((item) => selectedItemId == item.id );
 
     if (isItemFound !== undefined) {
-        itemName.value = isItemFound.itemName;
-        itemPrice.value = isItemFound.itemPrice;
-        itemQuantity.value = isItemFound.itemQuantity;
+     itemName.value = isItemFound.itemName;
+     itemQuantity.value = isItemFound.itemPrice;
+     itemPrice.value = isItemFound.itemQuantity;
+     addItemBtn.classList.add("hide");
+     updateItemBtn.classList.remove("hide");
+    }else{
+     addItemBtn.classList.remove("hide");
+     updateItemBtn.classList.add("hide");
     }
+
+
+
+};
+
+let updateItem = (id) => {
+    selectedItemId = id
+    let isItemFound = itemDetails.find((item) => selectedItemId == item.id);
+    if (editedItemIndex == isItemFound) {
+        let  itemDetail = {
+            itemName:document.getElementById("itemName").value,
+            itePrice:document.getElementById("itemPrice").value,
+            itemQuantity:document.getElementById("itemQuantity").value,
+
+        };
+        itemDetails.splice(editedItemIndex, 1, itemDetail);
+        generateItem(itemDetails);
+        totalPrice()
+
+    }
+
 }
 
-editIcon.addEventListener("click", (e) => {
-    e.preventDefault();
-    editItem(id);
-    // itemDetails.splice(isItemIndexFound, 1, {})
+updateItemBtn.addEventListener("click", () => {
+    updateItem();
 })
-
-
 
 
 
@@ -250,7 +258,9 @@ editIcon.addEventListener("click", (e) => {
 
 let selAllBtn = document.querySelector("#selcAll");
 let seperateBtn = document.querySelectorAll(".seperateBtn");
-let isBtnActive = false;
+let isBtnActive = false; 
+
+// btn.classList.add("unactiveBtn");
 
 let activateBtn = (btn) => {
     btn.classList.remove("unactiveBtn");
@@ -265,7 +275,7 @@ let deactivateBtn = (btn) => {
 console.log(seperateBtn);
 
 
-function deactivateBtnOnStart() {
+let deactivateBtnOnStart = () => {
     seperateBtn.forEach(btn => {
         deactivateBtn(btn);
         
@@ -308,7 +318,7 @@ selAllBtn.addEventListener("click", () => {
 
 // delete all
 let deleteAllModal = document.querySelector(".delete-all-modal");
-let dltAll = document.querySelector("#dltAll");
+let dltAll = document.querySelector(".dltAlls");
 let dltAllYes = document.querySelector("#dltAllModalDiv-yls");
 let dltAllNo = document.querySelector("#dltAllModalDiv-non");
 
@@ -321,6 +331,7 @@ let deleteAllItems = () => {
 
 dltAll.addEventListener("click", () => {
     deleteAllItems();
+    themeModal.classList.add("hide-modal")
 
     dltAllNo.addEventListener("click", () => {
         deleteAllModal.classList.add("hide-modal");
@@ -328,24 +339,118 @@ dltAll.addEventListener("click", () => {
 
 
     dltAllYes.addEventListener("click", () => {
-        let isItemFound = itemDetails.find((item) => item.id == id);
         
-        itemDetails =  itemDetails.filter((item) => item.id !== isItemFound.id )
+        itemDetails =  []
     
         generateItem(itemDetails);
+        deleteAllModal.classList.add("hide-modal");
 
         localStorage.setItem("itemDetails", JSON.stringify(itemDetails));
     })
 })
 
 
-// select item
+// toggle purchase
 
-let purchaseItem = () => {
-    isPurchased = true;
+
+let togglePurchaseItem = (id) => {
+    
+    
+    let isBoxFound = itemDetails.find((item) => item.id == id);
+    if (isBoxFound) {
+        itemDetails = itemDetails.map(item => {
+            if(item.id == isBoxFound.id){
+                item.isPurchased = !item.isPurchased;
+                
+                return item;
+            }
+            return item;
+        })
+        console.log(itemDetails);
+        generateItem(itemDetails);
+        calculateTotalpurchased();
+      
+    }      
+
 }
 
 
+
+// purchase items
+
+const calculateTotalpurchased = () => {
+    let totalspurchased = itemDetails.map(item => {
+        if(item.isPurchased === true){
+            return item.itemPrice * item.itemQuantity;
+        }
+        return 0;
+    })
+    console.log(totalspurchased);
+    let total = totalspurchased.reduce((acc, cur) => acc + cur, 0);
+    document.getElementById("purAmount").innerText = `$${total}`
+    if (total > 0) {
+        document.getElementById("purAmount").style.color = "#3AEC82";
+    }
+    else{document.getElementById("purAmount").style.color = "red";}
+}
+
+
+// purchase all items
+let purchaseAllItems = document.querySelector("#purSelc");
+
+
+purchaseAllItems.addEventListener("click", () => {
+    itemDetails = itemDetails.map(item => {
+        item.isPurchased = true;
+        return item;
+    })
+    generateItem(itemDetails);
+    calculateTotalpurchased()
+})
+
+// unpurchase all items
+
+let unpurchaseAllItems = document.querySelector("#unpurSelc");
+
+unpurchaseAllItems.addEventListener("click", () => {
+    itemDetails = itemDetails.map(item => {
+        item.isPurchased = false;
+        return item;
+    })
+    generateItem(itemDetails);
+    calculateTotalpurchased()
+})
+
+
+// delete all selected
+
+let deleteSelected = document.querySelector("#dltSelc");
+
+deleteSelected.addEventListener("click", () => {
+    itemDetails = itemDetails.filter(item => item.isPurchased !==  true)
+
+    generateItem(itemDetails);
+    calculateTotalpurchased()
+})
+
+
+
+
+
+// purchase all
+
+let themePurchase = document.querySelector("#theme-purchase");
+
+
+themePurchase.addEventListener("click", () => {
+    itemDetails = itemDetails.map(item => {
+        item.isPurchased = true;
+        return item;
+    })
+    generateItem(itemDetails);
+    calculateTotalpurchased()
+    themeModal.classList.add("hide-modal");
+})
 
 
 
@@ -361,27 +466,21 @@ select.addEventListener("change", (e) => {
             let fb  = b.itemName.toLowerCase();
             if (fa > fb) {
                 return -1;
-            }
+            };
             if (fa < fb) {
                 return 1;
             }
             return 0
         } );
+        console.log(itemDetails);
         generateItem(itemDetails);
     
     }
     else if (e.target.value === "price"){
-        itemDetails = itemDetails.sort((b,a) => {
-            let fa = a.itemName.toLowerCase();
-            let fb  = b.itemName.toLowerCase();
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0
-        } );
+        itemDetails = itemDetails.sort((b,a) => 
+           a.itemPrice - b.itemPrice
+         );
         generateItem(itemDetails);
     }
 })
+console.log(select);

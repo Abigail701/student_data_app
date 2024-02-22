@@ -48,7 +48,7 @@
         <ion-icon name="moon" id="theme-icon"></ion-icon>
       </div>
       
-      <button class="list-action-btn" id="theme-dlt">Delete all <ion-icon name="trash"></ion-icon></button>
+      <button class="list-action-btn dltAlls" id="theme-dlt">Delete all <ion-icon name="trash"></ion-icon></button>
       <button class="list-action-btn" id="theme-purchase">Purchase all <ion-icon name="checkmark-circle-outline"></ion-icon></button>
     </div>
     
@@ -83,22 +83,23 @@
         <label class="label">
          <p> Name of Item:</p>
          <div class="divider"></div>
-          <input type="text" value="" class="input inputBg" required>
+          <input type="text" value="" id="itemName" class="input inputBg" required>
         </label>
 
         <label class="label">
           <p>Quantity:</p>
          <div class="divider"></div>
-          <input type="number" value="1" class="input inputBg" min="1">
+          <input type="number" id="itemQuantity" value="1" class="input inputBg" min="1">
         </label>
 
         <label class="label">
           <p>Price:</p>
          <div class="divider"></div>
-          <input type="number" value="0" class="input inputBg">
+          <input type="number" value="0" id="itemPrice" class="input inputBg">
         </label>
 
         <button id="addItemBtn" >Add Item</button>
+        <button id="updateItemBtn" class="hide" >Update</button>
       </form>
 
       <div class="total-purchased">
@@ -110,7 +111,7 @@
 
         <div class="total inputBg">
           <p id="total-pur">Purchased:</p>
-          <p style="color: red;">$0.00</p>
+          <p style="color: red;" id="purAmount">$0.00</p>
         </div>
 
       </div>
@@ -119,7 +120,7 @@
 
     <section id="section-action">
       <div id="list-action">
-        <button class="list-action-btn" id="dltAll"><p>Delete all</p> <ion-icon name="trash"></ion-icon></button>
+        <button class="list-action-btn dltAlls" id="dltAll"><p>Delete all</p> <ion-icon name="trash"></ion-icon></button>
         <button class="list-action-btn" id="selcAll"><p>Select all</p> <ion-icon name="checkmark-circle-outline"></ion-icon></button>
         <button class="seperateBtn list-action-btn" id="dltSelc"><ion-icon name="trash"></ion-icon><p>Delete selected</p></button>
         <button class="seperateBtn list-action-btn" id="purSelc"><ion-icon name="push-outline"></ion-icon><p>Purchased selected</p></button>
@@ -137,6 +138,10 @@
 
     <section id="item-section">
 
+      <div class="emptyarray hide-modal">
+        <h1 id="item-section-h1">Nothing Yet!</h1>
+        <p>Add an item to start.</p>
+      </div>
       <!-- <div class="item-div">
         <input type="checkbox" id="checkbox">
 

@@ -6,6 +6,7 @@ body{
     background-color: #171722;
     color: #fff;
     margin: 3%;
+    overflow-x: hidden;
 }
 
 #top-div{
@@ -77,7 +78,7 @@ header{
     justify-content: space-between;
     flex-wrap: wrap;
     width: 50%;
-    height: auto;
+    height: 100%;
 }
 
 .label p{
@@ -92,13 +93,13 @@ header{
 .total-purchased{
     display: flex;
     justify-content: space-evenly;
-    width: 30%;
+    width: 50%;
     height: 100%;
 }
 
 .total{
-    width: 120px;
-    height: 80px;
+    width: 20%;
+    height: 100px;
     background-color:  #283941;
     display: flex;
     flex-direction: column;
@@ -108,7 +109,11 @@ header{
 }
 
 .total p{
-    font-size: 25px;
+    font-size: 130%;
+}
+
+#total-pur{
+    font-size: 20px
 }
 
 #addItemBtn{
@@ -120,14 +125,25 @@ header{
     border: none;
 }
 
+#updateItemBtn{
+    margin-top: 5%;
+    padding: 15px 25px; 
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #d9e7de;
+    border: none;
+}
+
+
 #section-action{
     margin-top: 3%;
-    
+    width: 100vw;
 }
 
 #list-action{
     padding-bottom: 10px;
     display: flex;
+    width: 100vw;
 }
 
 .list-action-btn{
@@ -142,17 +158,17 @@ header{
 }
 
 #dltAll{
-    background-color: red;
+    background: linear-gradient(to bottom right, #ff512f, #dd2476);
     color: #fff;
 }
 
 #selcAll{
-    background-color: blue;
+    background: linear-gradient(to bottom right, #0100ec, #fb36f487);
     color: #fff;
 }
 
 #dltSelc{
-    background-color: red;
+    background-color: red; 
     color: #fff;
 }
 
@@ -162,7 +178,7 @@ header{
 }
 
 #unpurSelc{
-    background-color: blue;
+    background-color: blue; 
     color: #fff;
 }
 
@@ -172,6 +188,18 @@ header{
     display: flex;
     flex-direction: column;
     
+}
+
+#item-section-h1{
+    font-size: 150%;
+}
+
+
+.emptyarray{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .item-div{
@@ -220,6 +248,10 @@ header{
     transition: all 600ms ease;
     transform: translateX(-120%);
     opacity: 0;
+}
+
+.hide{
+    display: none;
 }
 
 .open-modal{
@@ -328,9 +360,6 @@ header{
     background-color: red;
     cursor: pointer;
 } 
-
-
-
 
 
 
@@ -502,6 +531,13 @@ button {
 
     #section-header{
         display: flex;
+        /* flex-direction: column; */
         flex-wrap: wrap;
+    }
+
+    .total-purchased{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
 }
