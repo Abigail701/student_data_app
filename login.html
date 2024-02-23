@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(128, 128, 128, 0.427);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .background{
+            width: 350px;
+            height: 350px;
+            background-color: rgba(194, 187, 187, 0.918);
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.447);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #btn{
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 0, 0, 0.708);
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <form class="form">
+            <h1 style="color: white; text-align: center;">LOGIN</h1><br>
+            <div class="input">
+            <input type="text" name="" id="username" placeholder="username" required/><br><br>
+            <input type="password" name="" id="password" placeholder="password" required/><br><br>
+    
+            <button type="submit" id="btn">Login</button><br><br>
+        </div>
+        <h3 style="color: white; font-size: medium;">Don't have an account? <a href="signup.html">Sign-up</a></h3>
+            
+        </form>
+    
+    
+    </div>
+
+    <script src="./login.js"></script>
+</body>
+</html>
